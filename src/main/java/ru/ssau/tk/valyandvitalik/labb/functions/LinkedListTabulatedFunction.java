@@ -2,8 +2,6 @@ package ru.ssau.tk.valyandvitalik.labb.functions;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
-    private double[] xValues;
-    private double[] yValues;
     private int count;
     private Node head;
 
@@ -22,7 +20,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         }
         head.prev = node;
         count++;
-        }
+    }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; i++) {
@@ -61,11 +59,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double rightBound() {
         return head.prev.x;
-    }
-
-    @Override
-    public TabulatedFunction create(double[] xValues, double[] yValues) {
-        return null;
     }
 
     private Node getNode(int index) {

@@ -10,6 +10,14 @@ public class CompositeFunctionTest {
         MathFunction sinFunc = new FunctionSin();
         MathFunction cubeFunc = new FunctionCube();
         MathFunction compositeFunction = new CompositeFunction(sinFunc, cubeFunc);
-        assertEquals(Math.pow(Math.sin(60),3), compositeFunction.apply(60));
+        assertEquals(compositeFunction.apply(60), Math.pow(Math.sin(60), 3));
+    }
+
+    @Test
+    public void testApplyCompositeFunction() {
+        MathFunction testFunctionCube = new FunctionCube();
+        FunctionSqrt testFunctionSqrt = new FunctionSqrt();
+        assertEquals(testFunctionSqrt.andThen(testFunctionCube).apply(4), Math.sqrt(Math.pow(4, 3)));
     }
 }
+
