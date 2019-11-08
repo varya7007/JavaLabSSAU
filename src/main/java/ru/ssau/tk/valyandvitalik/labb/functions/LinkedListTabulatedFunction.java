@@ -22,13 +22,19 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         count++;
     }
 
-    public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+    public LinkedListTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException {
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException();
+        }
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
         }
     }
 
-    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) throws IllegalArgumentException {
+        if (count < 2) {
+            throw new IllegalArgumentException();
+        }
         if (xFrom > xTo) {
             xFrom = xFrom - xTo;
             xTo = xFrom + xTo;
@@ -99,7 +105,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return -1;
     }
 
-    public int floorIndexOfX(double x) {
+    public int floorIndexOfX(double x) throws IllegalArgumentException {
+        if (x < leftBound()) {
+            throw new IllegalArgumentException("x < Left Bound");
+        }
         if (x > head.prev.x) {
             return count;
         }
