@@ -1,5 +1,7 @@
 package ru.ssau.tk.valyandvitalik.labb.functions;
 
+import ru.ssau.tk.valyandvitalik.labb.exceptions.InterpolationException;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private int count;
@@ -23,6 +25,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException {
+        checkLengthIsTheSame(xValues, yValues);
+        checkSorted(xValues);
         if (xValues.length < 2) {
             throw new IllegalArgumentException();
         }
@@ -136,6 +140,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     protected double interpolate(double x, int floorIndex) {
         Node left = getNode(floorIndex);
         Node right = left.next;
+        if (!(left.x < x && x > right.x)) {
+            throw new InterpolationException();
+        }
         return super.interpolate(x, left.x, right.x, head.y, right.y);
     }
 

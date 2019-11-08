@@ -1,5 +1,6 @@
 package ru.ssau.tk.valyandvitalik.labb.functions;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -119,6 +120,9 @@ public class LinkedListTabulatedFunctionTest {
     public void testInterpolate() {
         LinkedListTabulatedFunction firstList = doList();
         LinkedListTabulatedFunction secondNum = doMathFunction();
+        Assert.assertThrows(IllegalArgumentException.class,()-> {
+            LinkedListTabulatedFunction doListTwo = new LinkedListTabulatedFunction(new double[]{12}, new double[]{13});
+        });
         assertEquals(firstList.interpolate(6.2, 5), 8.1, PRECISION);
         assertEquals(secondNum.interpolate(3, 1), 21., PRECISION);
     }

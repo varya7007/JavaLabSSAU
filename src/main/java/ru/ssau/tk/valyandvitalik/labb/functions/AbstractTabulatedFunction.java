@@ -1,5 +1,8 @@
 package ru.ssau.tk.valyandvitalik.labb.functions;
 
+import ru.ssau.tk.valyandvitalik.labb.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.valyandvitalik.labb.exceptions.DifferentLengthOfArraysException;
+
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     abstract int floorIndexOfX(double x);
 
@@ -23,6 +26,20 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
             return getY(indexOfX(x));
         } else {
             return interpolate(x, floorIndexOfX(x));
+        }
+    }
+
+    static void checkLengthIsTheSame(double[] xValues, double[] yValues) {
+        if (xValues.length != yValues.length) {
+            throw new DifferentLengthOfArraysException();
+        }
+    }
+
+    static void checkSorted(double[] xValues) {
+        for (int i = 1; i < xValues.length; i++) {
+            if (xValues[i] <= xValues[i-1]) {
+                throw new ArrayIsNotSortedException();
+            }
         }
     }
 }
