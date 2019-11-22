@@ -2,6 +2,9 @@ package ru.ssau.tk.valyandvitalik.labb.functions;
 
 import ru.ssau.tk.valyandvitalik.labb.exceptions.InterpolationException;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private int count;
@@ -144,6 +147,37 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             throw new InterpolationException();
         }
         return super.interpolate(x, left.x, right.x, head.y, right.y);
+    }
+
+    public Iterator<Point> iterator() {
+        return new Iterator<Point>() {
+            private Node node = head;
+
+            @Override
+            public boolean hasNext() {
+                if (node == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public Point next() {
+                if (hasNext()) {
+                    Point point = new Point(node.x, node.y);
+                    node = node.next;
+                    if (node == head) {
+                        node = null;
+                    }
+                    return point;
+                } else {
+                    throw new NoSuchElementException();
+                }
+            }
+
+
+        };
     }
 
     protected class Node {

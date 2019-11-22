@@ -3,6 +3,8 @@ package ru.ssau.tk.valyandvitalik.labb.functions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.*;
 
 public class LinkedListTabulatedFunctionTest {
@@ -120,7 +122,7 @@ public class LinkedListTabulatedFunctionTest {
     public void testInterpolate() {
         LinkedListTabulatedFunction firstList = doList();
         LinkedListTabulatedFunction secondNum = doMathFunction();
-        Assert.assertThrows(IllegalArgumentException.class,()-> {
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
             LinkedListTabulatedFunction doListTwo = new LinkedListTabulatedFunction(new double[]{12}, new double[]{13});
         });
         assertEquals(firstList.interpolate(6.2, 5), 8.1, PRECISION);
@@ -132,5 +134,21 @@ public class LinkedListTabulatedFunctionTest {
         LinkedListTabulatedFunction firstList = doList();
         assertEquals(firstList.apply(3), 3.9, PRECISION);
         assertEquals(firstList.apply(3.3), 4.7, PRECISION);
+    }
+
+    @Test
+    public void testIterator() {
+        LinkedListTabulatedFunction firstList = doList();
+        Iterator<Point> iterator = firstList.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(doList().getX(i++), point.x, 0.0001);
+        }
+        ;
+        i = 0;
+        for (Point point : doList()) {
+            assertEquals(doList().getX(i++), point.x, 0.0001);
+        }
     }
 }

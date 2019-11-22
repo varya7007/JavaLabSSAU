@@ -1,6 +1,8 @@
 package ru.ssau.tk.valyandvitalik.labb.functions;
 
-public interface TabulatedFunction extends MathFunction {
+import java.util.Iterator;
+
+public interface TabulatedFunction extends MathFunction, Iterable<Point> {
     int getCount();
 
     double getX(int index);
