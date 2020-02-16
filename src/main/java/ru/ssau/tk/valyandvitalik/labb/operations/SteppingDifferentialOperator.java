@@ -17,6 +17,9 @@ public abstract class SteppingDifferentialOperator implements DifferentialOperat
     }
 
     public void setStep(double step) {
+        if (step <= 0 || step == Double.POSITIVE_INFINITY || step != step) {
+            throw new IllegalArgumentException();
+        }
         this.step = step;
     }
 }
