@@ -33,10 +33,4 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         yValues[xValues.length - 1] = yValues[xValues.length - 2];
         return factory.create(xValues, yValues);
     }
-
-
-    @Override
-    public double apply(double x) {
-        return 0;
-    }
 }
