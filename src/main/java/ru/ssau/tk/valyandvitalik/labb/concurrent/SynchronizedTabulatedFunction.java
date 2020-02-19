@@ -5,6 +5,7 @@ import ru.ssau.tk.valyandvitalik.labb.functions.TabulatedFunction;
 import ru.ssau.tk.valyandvitalik.labb.operations.TabulatedFunctionOperationService;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SynchronizedTabulatedFunction implements TabulatedFunction {
     final TabulatedFunction function;
@@ -72,7 +73,26 @@ public class SynchronizedTabulatedFunction implements TabulatedFunction {
 
     @Override
     public Iterator<Point> iterator() {
-        return null;
+        synchronized (function) {
+            Point[] points = TabulatedFunctionOperationService.asPoint(function);
+            return new Iterator<Point>() {
+                int i = 0;
+
+                @Override
+                public boolean hasNext() {
+                    return i != points.length;
+                }
+
+                @Override
+                public Point next() {
+                    if (!hasNext()) {
+                        throw new NoSuchElementException();
+                    } else {
+                        return new Point(points[i].x, points[i++].y);
+                    }
+                }
+            };
+        }
     }
 
     @Override
