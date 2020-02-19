@@ -2,11 +2,13 @@ package ru.ssau.tk.valyandvitalik.labb.functions;
 
 import ru.ssau.tk.valyandvitalik.labb.exceptions.InterpolationException;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
 
+    private static final long serialVersionUID = -8265909571646215844L;
     private int count;
     private Node head;
 
@@ -155,11 +157,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
             @Override
             public boolean hasNext() {
-                if (node == null) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return node != null;
             }
 
             @Override
@@ -180,7 +178,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         };
     }
 
-    protected class Node {
+    protected static class Node implements Serializable {
+        private static final long serialVersionUID = -991659607221033384L;
         public Node next;
         public Node prev;
         public double x;

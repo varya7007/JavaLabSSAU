@@ -9,7 +9,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-public final class FunctionsIO {
+public final class FunctionsIO implements Serializable{
+    private static final long serialVersionUID = -2167419473240387685L;
+
     private FunctionsIO() {
         throw new UnsupportedOperationException();
     }

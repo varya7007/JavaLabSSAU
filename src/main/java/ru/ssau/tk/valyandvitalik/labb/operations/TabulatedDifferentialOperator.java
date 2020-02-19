@@ -2,13 +2,18 @@ package ru.ssau.tk.valyandvitalik.labb.operations;
 
 import ru.ssau.tk.valyandvitalik.labb.functions.Point;
 import ru.ssau.tk.valyandvitalik.labb.functions.TabulatedFunction;
+import ru.ssau.tk.valyandvitalik.labb.functions.factory.LinkedListTabulatedFunctionFactory;
 import ru.ssau.tk.valyandvitalik.labb.functions.factory.TabulatedFunctionFactory;
 
 public class TabulatedDifferentialOperator implements DifferentialOperator<TabulatedFunction> {
     TabulatedFunctionFactory factory;
 
-    TabulatedDifferentialOperator(TabulatedFunctionFactory factory) {
+    public TabulatedDifferentialOperator(TabulatedFunctionFactory factory) {
         this.factory = factory;
+    }
+
+    public TabulatedDifferentialOperator() {
+        this.factory = new LinkedListTabulatedFunctionFactory();
     }
 
     public TabulatedFunctionFactory getFactory() {

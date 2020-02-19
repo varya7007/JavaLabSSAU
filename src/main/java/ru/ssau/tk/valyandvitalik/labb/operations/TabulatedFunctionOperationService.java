@@ -10,6 +10,6 @@ public class TabulatedFunctionOperationService {
         for (Point newPoint : tabulatedFunction) {
             points[i++] = newPoint;
         }
-        return null;
+        return points;
     }
 }
