@@ -13,8 +13,8 @@ public class TabulatedFunctionFileWriter {
         LinkedListTabulatedFunction linkedListTabulatedFunction = new LinkedListTabulatedFunction(new FunctionCube(), 0, 10, 20);
         try {
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter("output/linked list function.txt"));
-FunctionsIO.writeTabulatedFunction(fileWriter, linkedListTabulatedFunction);
-        } catch (IOException e){
+            FunctionsIO.writeTabulatedFunction(fileWriter, linkedListTabulatedFunction);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
