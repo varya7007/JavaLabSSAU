@@ -1,6 +1,5 @@
 package ru.ssau.tk.valyandvitalik.labb.ui;
 
-import jdk.nashorn.internal.ir.Node;
 import ru.ssau.tk.valyandvitalik.labb.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.valyandvitalik.labb.functions.TabulatedFunction;
 import ru.ssau.tk.valyandvitalik.labb.functions.factory.LinkedListTabulatedFunctionFactory;
